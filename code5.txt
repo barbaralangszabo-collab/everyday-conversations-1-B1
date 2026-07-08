@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Englishkola - B1 Everyday Scenarios Master Trainer</title>
+
+<style>
+  :root {
+    /* --- Soft yet Vivid Englishkola Palette --- */
+    --primary-300: #FEF3C7; 
+    --primary-500: #D97706; /* Warm Ochre Gold */
+    --primary-700: #B45309; 
+    
+    /* Englishkola Lighter, Readable Velvet Plum Espresso */
+    --plum-vivid: #702473;  
+    --plum-dark: #521454;   
+    --plum-light: #943A97;  
+    
+    /* Englishkola Soft Crimson Rose Pink */
+    --secondary-300: #FFE4E6; 
+    --secondary-500: #E11D48; 
+    --secondary-700: #9F1239; 
+    
+    /* --- Light Amber Palette --- */
+    --amber-light: #FEF3C7;
+    --amber-main: #F59E0B; 
+    --amber-dark: #B45309;
+    
+    --bg: #FDFBF7;          /* Warm Creamy Sand background */
+    --surface: #FFFFFF;
+    --surface-alt: #F8FAFC; 
+    --border: #E2E8F0;      
+    --text: #521454;        /* Balanced lighter plum body text */
+    --text-2: #3F2C3F; 
+    --text-muted: #64748B;
+    --text-inverse: #FFFFFF;
+    --success: #15803D;
+    --error: #B91C1C;
+
+    --font-main: "Inter", system-ui, sans-serif;
+    --shadow-card: 0 10px 25px rgba(112, 36, 115, 0.05);
+    --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  body {
+    font-family: var(--font-main);
+    background-color: var(--bg);
+    padding: 24px;
+    font-size: 18px; 
+    color: var(--text);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Screen Constraints to prevent scrolling on the landing screen */
+  body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+  }
+
+  .container {
+    max-width: 1400px; 
+    width: 100%;
+    margin: 0 auto;
+    background: var(--surface);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid #E2E8F0;
+    box-sizing: border-box;
+  }
+
+  .app-screen {
+    display: none;
+  }
+  .app-screen.active-screen {
+    display: block;
+  }
+
+  /* --- Ultra-Dense, Scroll-Free Welcome Landing Page Layout --- */
+  .landing-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .landing-left {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .app-logo-large {
+    width: 100%;
+    max-width: 380px; /* Kept your exact logo footprint */
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 10px; /* Reduced to pull items up */
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  .landing-title {
+    font-size: 36px; /* Optimized slightly for screen compression */
+    color: var(--plum-vivid);
+    margin: 0 0 10px 0;
+    font-weight: 850;
+    letter-spacing: -0.5px;
+  }
+
+  .landing-intro {
+    font-size: 18px; 
+    color: var(--text-2);
+    margin: 0 0 15px 0;
+    max-width: 500px;
+  }
+
+  /* --- Light Amber Buttons --- */
+  .btn-start-app {
+    background-color: var(--amber-main);
+    color: var(--plum-dark);
+    padding: 14px 48px;
+    font-size: 19px; 
+    font-weight: 800;
+    border: 2px solid var(--amber-dark);
+    border-radius: 35px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    transition: var(--transition);
+  }
+
+  .btn-start-app:hover {
+    background-color: var(--amber-dark);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(180, 83, 9, 0.4);
+  }
+
+  /* --- Compact How to Use Guide Block --- */
+  .how-to-use-box {
+    background: #FFFBF0; 
+    border: 1px solid #FDE68A;
+    border-radius: 16px;
+    padding: 24px; /* Balanced density padding */
+    text-align: left;
+    box-shadow: var(--shadow-card);
+  }
+
+  .how-to-use-box h3 {
+    margin-top: 0;
+    color: var(--primary-700);
+    font-size: 22px; 
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .how-to-use-box ol {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .how-to-use-box li {
+    margin-bottom: 8px; /* Tighter item distribution */
+    font-size: 17px; 
+    color: var(--text);
+  }
+
+  /* --- Workspace Layout Settings --- */
+  .intro-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px; 
+    margin-bottom: 30px;
+  }
+
+  .gallery-card {
+    width: 100%;
+    height: 180px; 
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  }
+
+  .gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  h1 {
+    font-size: 34px; 
+    color: var(--plum-vivid);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+
+  .subtitle {
+    color: var(--text-muted);
+    font-size: 19px; 
+    margin-bottom: 30px;
+  }
+
+  .topic-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); 
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 30px;
+  }
+
+  .topic-btn {
+    background-color: var(--surface-alt);
+    border: 1px solid #E2E8F0;
+    padding: 14px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px; 
+    font-weight: 700;
+    color: var(--text-2);
+    text-align: left;
+    transition: var(--transition);
+  }
+
+  .topic-btn:hover {
+    background-color: var(--secondary-300);
+    border-color: var(--secondary-500);
+    color: var(--secondary-700);
+  }
+
+  .topic-btn.active {
+    background-color: var(--plum-vivid);
+    border-color: var(--plum-light);
+    color: var(--text-inverse);
+    box-shadow: 0 4px 10px rgba(112, 36, 115, 0.2);
+  }
+
+  .section-label {
+    font-size: 24px; 
+    font-weight: 800;
+    color: var(--plum-vivid);
+    border-left: 6px solid var(--primary-500);
+    padding-left: 14px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .learning-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 24px;
+    margin-bottom: 35px;
+  }
+
+  .info-panel {
+    background: var(--surface-alt);
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 24px;
+    height: 640px; 
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-card);
+  }
+
+  .panel-body-scroll {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 4px;
+  }
+
+  .panel-header {
+    font-weight: 800;
+    font-size: 19px; 
+    margin-bottom: 15px;
+    color: var(--plum-vivid);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 12px;
+  }
+
+  .keyword-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .keyword-tag {
+    background: var(--surface);
+    border: 1px solid #E2E8F0;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 16px; 
+    font-weight: 800;
+    color: var(--plum-vivid);
+  }
+  
+  .keyword-tag span {
+    color: var(--text-2);
+    font-weight: 500;
+    font-size: 15px; 
+    display: block;
+    margin-top: 6px;
+  }
+
+  .flashcard-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .flashcard-container {
+    perspective: 1000px;
+    width: 100%;
+    height: 310px; 
+    cursor: pointer;
+  }
+
+  .flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.4s;
+  }
+
+  .flashcard.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid #E2E8F0;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-front {
+    background: var(--plum-light);
+    color: var(--text-inverse);
+    font-weight: 800;
+    font-size: 26px; 
+    border-bottom: 8px solid var(--primary-500);
+  }
+
+  .card-back {
+    background: var(--surface);
+    color: var(--text);
+    transform: rotateY(180deg);
+    font-size: 17px;
+  }
+
+  .card-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .card-nav-btn {
+    background: var(--amber-light);
+    border: 1px solid var(--amber-dark);
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-weight: 800;
+    font-size: 15px; 
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--amber-dark);
+  }
+  .card-nav-btn:hover { 
+    background: var(--amber-main); 
+    color: var(--plum-dark);
+  }
+
+  .game-area {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px;
+  }
+
+  @media (max-width: 1024px) {
+    .learning-grid, .game-area, .landing-wrapper {
+      grid-template-columns: 1fr;
+    }
+    body.no-scroll { overflow: auto; height: auto; }
+    .info-panel { height: 460px; }
+  }
+
+  .pool-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .phrase-btn {
+    background: var(--surface);
+    border: 1px solid #CBD5E1;
+    padding: 14px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 16px; 
+    color: var(--text);
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  }
+
+  .phrase-btn:hover:not(:disabled) {
+    border-color: var(--primary-500);
+    background-color: var(--primary-300);
+  }
+
+  .phrase-btn.used {
+    opacity: 0.25;
+    background-color: #E2E8F0;
+    cursor: not-allowed;
+  }
+
+  .conversation-box {
+    background: var(--surface-alt);
+    border: 2px dashed #CBD5E1;
+    border-radius: 16px;
+    padding: 24px;
+    min-height: 490px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .line-item {
+    background: var(--surface);
+    border: 1px solid #E2E8F0;
+    border-left: 6px solid var(--primary-500);
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 16px; 
+  }
+
+  .role-tag {
+    display: inline-block;
+    font-weight: 800;
+    font-size: 13px; 
+    padding: 4px 12px;
+    border-radius: 14px;
+    margin-right: 10px;
+  }
+  
+  .role-a { background-color: var(--plum-vivid); color: var(--text-inverse); }
+  .role-b { background-color: var(--secondary-500); color: var(--text-inverse); }
+
+  .controls-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .action-btn {
+    flex: 1;
+    min-width: 130px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 16px; 
+    font-weight: 800;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    text-align: center;
+  }
+
+  .btn-check { background-color: var(--amber-main); color: var(--plum-dark); border: 2px solid var(--amber-dark); box-shadow: 0 4px 10px rgba(245,158,11,0.15); }
+  .btn-check:hover { background-color: var(--amber-dark); color: white; }
+  .btn-reveal { background-color: #4A154B; color: white; }
+  .btn-reveal:hover { background-color: var(--plum-dark); }
+  
+  .btn-reset { 
+    background-color: transparent; 
+    border: 2px solid #CBD5E1; 
+    color: var(--text-2); 
+  }
+  .btn-reset:hover { 
+    border-color: var(--text); 
+    background-color: var(--surface-alt);
+  }
+</style>
+</head>
+<!-- Initialized body with class to manage page scroll limits -->
+<body class="no-scroll">
+
+<div class="container">
+
+  <!-- --- LANDING SCREEN --- -->
+  <div id="landingScreen" class="app-screen active-screen">
+    <div class="landing-wrapper">
+      <div class="landing-left">
+        <img src="branding.jpg" alt="Englishkola Logo" class="app-logo-large">
+        <div class="landing-title">Englishkola</div>
+        <p class="landing-intro">
+          <strong>Practice your everyday B1 English. Learn useful words and practice conversations for real-life travel, food, and shopping situations.</strong>
+        </p>
+        <button class="btn-start-app" onclick="startApp('mainAppScreen')">Start Training →</button>
+      </div>
+
+      <div class="how-to-use-box">
+        <h3>💡 How to Use This App</h3>
+        <ol>
+          <li><strong>Pick a Situation:</strong> Choose one of the 21 everyday options from the list below.</li>
+          <li><strong>Study Words & Dialog:</strong> Review the 10 important words, read through the correct text example, and use the interactive flashcards.</li>
+          <li><strong>Play the Ordering Game:</strong> Look at the scrambled sentences. Click them in the correct sequence to build the real-life conversation, then press <strong>Check</strong>!</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- --- MAIN APPLICATION WORKSPACE SCREEN --- -->
+  <div id="mainAppScreen" class="app-screen">
+    <div class="intro-gallery">
+      <div class="gallery-card"><img src="cafe.jpg" alt="Sharp High Resolution Café Scene"></div>
+      <div class="gallery-card"><img src="clothesshop.jpg" alt="Real Clothes Shop Scene"></div>
+      <div class="gallery-card"><img src="hotel.jpg" alt="Real Hotel Scene"></div>
+      <div class="gallery-card"><img src="pharma.jpg" alt="Real Pharmacy Scene"></div>
+    </div>
+
+    <h1>🗂️ 21 B1 Everyday Scenarios</h1>
+    <p class="subtitle">Practice basic, useful situations to travel, shop, and communicate easily.</p>
+
+    <div class="section-label">Step 1: Select an Everyday Situation</div>
+    <div class="topic-menu" id="topicMenu"></div>
+
+    <div class="section-label">Step 2: Words &amp; Script Study</div>
+    <div class="learning-grid">
+      <div class="info-panel">
+        <div class="panel-header">🔑 10 Important Words</div>
+        <div class="panel-body-scroll">
+          <div class="keyword-list" id="keywordBox"></div>
+        </div>
+      </div>
+
+      <div class="info-panel">
+        <div class="panel-header">📖 Correct Conversation Example</div>
+        <div class="panel-body-scroll" id="sampleConvBox" style="font-size: 16px;"></div>
+      </div>
+
+      <div class="info-panel">
+        <div class="panel-header">🎴 Meaning Flashcards</div>
+        <div class="flashcard-wrapper">
+          <div class="flashcard-container" onclick="toggleCard()">
+            <div class="flashcard" id="cardElement">
+              <div class="card-face card-front" id="cardFrontText">Word</div>
+              <div class="card-face card-back" id="cardBackText">Meaning</div>
+            </div>
+          </div>
+          <div class="card-controls">
+            <button class="card-nav-btn" onclick="prevCard(event)">◀ Prev</button>
+            <span id="cardTracker" style="font-size:15px; font-weight:700; color:var(--text-muted);">1 / 10</span>
+            <button class="card-nav-btn" onclick="nextCard(event)">Next ▶</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Step 3: Put the Conversation in Order</div>
+    <div class="game-area">
+      <div>
+        <div class="panel-header">🔄 Shuffled Sentences (Click to choose)</div>
+        <div class="pool-box" id="phrasePool"></div>
+      </div>
+
+      <div>
+        <div class="panel-header">📋 Your Conversation Layout</div>
+        <div class="conversation-box" id="conversationBox"></div>
+        
+        <div class="controls-row">
+          <button class="action-btn btn-check" onclick="checkConversation()">Check</button>
+          <button class="action-btn btn-reveal" onclick="showCorrectOrder()">Show Answer</button>
+          <button class="action-btn btn-reset" onclick="resetConversation()">Clear Options</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Toggle scroll limitations based on screen view status
+function startApp(screenId) {
+  document.body.classList.remove('no-scroll');
+  switchScreen(screenId);
+}
+
+function switchScreen(screenId) {
+  document.querySelectorAll('.app-screen').forEach(screen => {
+    screen.classList.remove('active-screen');
+  });
+  document.getElementById(screenId).classList.add('active-screen');
+  window.scrollTo(0, 0);
+}
+
+const topics = {
+  "1. Renting a Car": {
+    roles: { A: "Customer", B: "Agent" },
+    dialogue: [
+      "Customer: Hello, I want to rent a small car for three days, please.",
+      "Agent: Sure, we have a nice compact car available. Do you have your driving license?",
+      "Customer: Yes, here is my license and my credit card.",
+      "Agent: Perfect. Would you like to buy full insurance to cover any damage?",
+      "Customer: Yes, please. I prefer to feel safe while driving in a new city.",
+      "Agent: Excellent choice. Please sign your name here on the contract form.",
+      "Customer: No problem. Where can I collect the keys and the vehicle?",
+      "Agent: The keys are here, and the car is parked in slot number twelve outside."
+    ],
+    keywords: [
+      {word: "Rent", def: "To pay money to use something. | Example: We want to rent a car."},
+      {word: "License", def: "An official card that permits driving. | Example: Show your license here."},
+      {word: "Insurance", def: "Protection against accidents or damage. | Example: Car insurance is safe."},
+      {word: "Compact", def: "Small and convenient for city travel. | Example: This compact car is easy to park."},
+      {word: "Collect", def: "To pick up an object from a place. | Example: Please collect your keys."},
+      {word: "Contract", def: "A legal document you sign. | Example: Read the rental contract carefully."},
+      {word: "Vehicle", def: "A car, truck, or other machine. | Example: The vehicle is ready for you."},
+      {word: "Available", def: "Ready for use right now. | Example: Is this seat available?"},
+      {word: "Slot", def: "A specific numbered parking space. | Example: Park the car in slot twelve."},
+      {word: "Damage", def: "Harm or hurt done to an object. | Example: Check the windows for damage."}
+    ]
+  },
+  "2. At a Clothes Shop": {
+    roles: { A: "Customer", B: "Assistant" },
+    dialogue: [
+      "Customer: Hello, I want to return this winter jacket. There is a problem with it.",
+      "Assistant: I am sorry to hear that. What is wrong with the jacket?",
+      "Customer: The zipper gets stuck, and there is a tear inside the left pocket.",
+      "Assistant: Oh, I see it now. Do you have the shop receipt with you?",
+      "Customer: Yes, here it is. I bought it only three days ago.",
+      "Assistant: Perfect. Would you like to change it for a new jacket or get a refund?",
+      "Customer: I would prefer a full cash refund, please.",
+      "Assistant: No problem at all. Sign here, and I will give you your money back."
+    ],
+    keywords: [
+      {word: "Return", def: "To take an item back to a store. | Example: I want to return this dress."},
+      {word: "Problem", def: "Something wrong that needs a solution. | Example: There is a problem with the zipper."},
+      {word: "Stuck", def: "Unable to move easily. | Example: This door is stuck."},
+      {word: "Receipt", def: "Paper showing you paid for an item. | Example: Keep your receipt for safety."},
+      {word: "Refund", def: "Money given back by a store. | Example: Can I get a full cash refund?"},
+      {word: "Prefer", def: "To like one choice more than another. | Example: I prefer blue over green."},
+      {word: "Tear", def: "A hole made inside fabric or cloth. | Example: There is a tear in this shirt."},
+      {word: "Assistant", def: "A worker who helps store customers. | Example: Ask the assistant for help."},
+      {word: "Size", def: "How big or small a clothing piece is. | Example: This jacket is the wrong size."},
+      {word: "Change", def: "To trade one item for a different one. | Example: Let's change it for a bigger one."}
+    ]
+  },
+  "3. At a Pharmacy": {
+    roles: { A: "Patient", B: "Pharmacist" },
+    dialogue: [
+      "Patient: Good afternoon. I need some medicine for a cold that started yesterday.",
+      "Pharmacist: Of course. Can you tell me what your symptoms are?",
+      "Patient: I have a bad cough, a headache, and my throat is very sore.",
+      "Pharmacist: I see. Do you have a fever, or do you just feel tired?",
+      "Patient: I do not have a fever, but it hurts when I swallow food.",
+      "Pharmacist: This sweet liquid syrup will help your throat, and these tablets are for the pain.",
+      "Patient: Great. How many times a day should I use them?",
+      "Pharmacist: Take one spoon of syrup every six hours, and one tablet before bed."
+    ],
+    keywords: [
+      {word: "Medicine", def: "Something you take to heal an illness. | Example: Drink this medicine now."},
+      {word: "Symptoms", def: "Signs that show you are sick. | Example: Coughing is a bad symptom."},
+      {word: "Sore", def: "Feeling painful or uncomfortable. | Example: My legs are sore from walking."},
+      {word: "Fever", def: "High body temperature from sickness. | Example: Use a thermometer to check for a fever."},
+      {word: "Swallow", def: "To move food down your throat. | Example: It hurts to swallow water."},
+      {word: "Syrup", def: "A sweet medicinal liquid. | Example: Cough syrup helps your throat feel better."},
+      {word: "Tablets", def: "Small hard pills of medicine. | Example: Take two tablets daily."},
+      {word: "Pharmacist", def: "A person trained to give out medicine. | Example: The pharmacist gave me great advice."},
+      {word: "Cough", def: "Forcing air out of your lungs with a noise. | Example: Cover your mouth when you cough."},
+      {word: "Pain", def: "An unpleasant feeling of hurt in the body. | Example: This tablet stops the headache pain."}
+    ]
+  },
+  "4. Ordering Food at a Café": {
+    roles: { A: "Guest", B: "Waiter" },
+    dialogue: [
+      "Guest: Hello, I want to order the grilled fish, but I have a food allergy.",
+      "Waiter: Certainly! Please tell me what you cannot eat.",
+      "Guest: I have a bad dairy allergy, so I cannot eat butter, milk, or cheese.",
+      "Waiter: I understand. Our chef can cook the fish with clean olive oil instead.",
+      "Guest: Wonderful. Does the side salad have mayonnaise or cream dressing?",
+      "Waiter: Yes, but we can change it to a simple oil and vinegar mix.",
+      "Guest: That is great. Thank you for helping me with my food choices.",
+      "Waiter: It is my pleasure. We always keep our kitchen clean to avoid mistakes."
+    ],
+    keywords: [
+      {word: "Order", def: "To ask for food in a café. | Example: I want to order a coffee."},
+      {word: "Allergy", def: "A condition making you sick from a food. | Example: He has a peanut allergy."},
+      {word: "Dairy", def: "Products made from milk. | Example: Butter and cheese are dairy items."},
+      {word: "Instead", def: "In place of something else. | Example: Give me tea instead of coffee."},
+      {word: "Dressing", def: "A sauce used to add flavor to salad. | Example: I like oil salad dressing."},
+      {word: "Pleasure", def: "A feeling of happiness or politeness. | Example: Helping you is my pleasure."},
+      {word: "Avoid", def: "To stay away from a dangerous mistake. | Example: Avoid using sugar in my tea."},
+      {word: "Certainly", def: "A word meaning 'yes, of course'. | Example: Certainly, I will bring water."},
+      {word: "Chef", def: "The professional cook in a restaurant. | Example: The chef made an amazing meal."},
+      {word: "Grilled", def: "Cooked over a hot grill fire. | Example: I love grilled chicken."}
+    ]
+  },
+  "5. Checking Into a Hotel": {
+    roles: { A: "Guest", B: "Receptionist" },
+    dialogue: [
+      "Guest: Hello, I just went up to room 304, but there is a problem.",
+      "Receptionist: I am very sorry to hear that. What is the trouble, sir?",
+      "Guest: The air conditioning is making a loud noise, and the internet is not working.",
+      "Receptionist: Let me look at our computer screen. Ah, that floor has a system error.",
+      "Guest: I have an important business video call in an hour, so I need the internet.",
+      "Receptionist: I understand. I can move you to a larger executive room on the fifth floor now.",
+      "Guest: That sounds like a wonderful plan. Does everything work up there?",
+      "Receptionist: Yes, everything is tested. Here is your new electronic room key card."
+    ],
+    keywords: [
+      {word: "Trouble", def: "A problem or difficult situation. | Example: We had some trouble with the car."},
+      {word: "Loud", def: "Making a high amount of noise. | Example: The music outside is too loud."},
+      {word: "Internet", def: "The web connection for devices. | Example: Is the internet free in this hotel?"},
+      {word: "Move", def: "To change your room or position. | Example: Move your bags to the side."},
+      {word: "Plan", def: "A decided action or arrangement. | Example: My plan is to sleep early."},
+      {word: "Tested", def: "Checked to make sure it works. | Example: The technician tested the elevator."},
+      {word: "Electronic", def: "Using electric power or chips. | Example: This electronic lock is fast."},
+      {word: "Key card", def: "A plastic card used to open hotel doors. | Example: Don't lose your hotel key card."},
+      {word: "Floor", def: "A level inside a tall building. | Example: My room is on the third floor."},
+      {word: "Loud", def: "Strong audio sound that hurts ears. | Example: The loud truck woke me up."}
+    ]
+  },
+  "6. Asking for Directions": {
+    roles: { A: "Tourist", B: "Local" },
+    dialogue: [
+      "Tourist: Excuse me, can you help me find the main train station?",
+      "Local: Yes, walk straight down this street for two blocks.",
+      "Tourist: Okay, do I turn left or right at the big traffic lights?",
+      "Local: Turn right, and you will see a public library next to a park.",
+      "Tourist: Is the station past the library or before it?",
+      "Local: It is directly across the street from the library entrance.",
+      "Tourist: Thank you very much, is it far to walk there?",
+      "Local: No, it only takes five minutes on foot from here."
+    ],
+    keywords: [
+      {word: "Find", def: "To discover where something is. | Example: Help me find my map."},
+      {word: "Straight", def: "Moving in one continuous direction. | Example: Walk straight along this path."},
+      {word: "Blocks", def: "The distance between two city streets. | Example: The shop is three blocks away."},
+      {word: "Traffic lights", def: "Red, yellow, and green road signals. | Example: Stop the car at the traffic lights."},
+      {word: "Library", def: "A public building full of books. | Example: I study quietly inside the library."},
+      {word: "Past", def: "Going beyond a specific landmark point. | Example: Walk past the supermarket."},
+      {word: "Across", def: "On the opposite side of a space or road. | Example: The hotel is across the street."},
+      {word: "Entrance", def: "The door where you go inside a building. | Example: Wait for me at the front entrance."},
+      {word: "Foot", def: "Walking instead of using a vehicle. | Example: We traveled around the town on foot."},
+      {word: "Far", def: "A long physical distance away. | Example: The beach is too far to walk."}
+    ]
+  },
+  "7. Buying a Train Ticket": {
+    roles: { A: "Traveler", B: "Clerk" },
+    dialogue: [
+      "Traveler: Hello, I need a ticket to London for tomorrow morning, please.",
+      "Clerk: Sure. Do you want a one-way ticket or a return ticket?",
+      "Traveler: A return ticket, please. I am coming back on Sunday evening.",
+      "Clerk: Would you like to sit in first class or standard class?",
+      "Traveler: Standard class is fine. Does this train go directly to the city?",
+      "Clerk: No, you have to change trains once at the next major station.",
+      "Traveler: Okay, how much does the final ticket cost in total?",
+      "Clerk: That will be forty-five pounds. You can pay with cash or card."
+    ],
+    keywords: [
+      {word: "Ticket", def: "A paper showing you paid for a journey. | Example: Show the officer your train ticket."},
+      {word: "One-way", def: "A ticket to travel to a place without coming back. | Example: I bought a one-way ticket to Paris."},
+      {word: "Return", def: "A ticket to go to a place and come back. | Example: Buying a return ticket saves money."},
+      {word: "First class", def: "The most comfortable and expensive train seats. | Example: First class offers free drinks."},
+      {word: "Standard", def: "The regular, normal price seating area. | Example: Standard class is clean and cheap."},
+      {word: "Directly", def: "Going straight to a place without stopping. | Example: This express bus goes directly to airport."},
+      {word: "Change", def: "To get off one train and get on another. | Example: We need to change lines at central station."},
+      {word: "Cost", def: "The amount of money you must pay. | Example: How much does this blue hat cost?"},
+      {word: "Total", def: "The final cost when everything is added. | Example: Your total bill is twenty dollars."},
+      {word: "Pounds", def: "The official form of money in the UK. | Example: The book costs ten British pounds."}
+    ]
+  },
+  "8. Booking a Hotel Room": {
+    roles: { A: "Customer", B: "Receptionist" },
+    dialogue: [
+      "Customer: Hello, I want to book a double room for two nights next week.",
+      "Receptionist: Let me check our calendar. Yes, we have a room with a nice view.",
+      "Customer: Great. Does the price include breakfast in the morning?",
+      "Receptionist: Yes, breakfast is served in the main dining hall from seven to ten.",
+      "Customer: Perfect. Is there a safe place to leave my luggage before check-in?",
+      "Receptionist: Of course. You can store your bags in our locked storage room for free.",
+      "Customer: Thank you. Can I pay the bill when I arrive at the hotel?",
+      "Receptionist: Yes, we just need a credit card number now to hold the booking."
+    ],
+    keywords: [
+      {word: "Book", def: "To reserve a room or seat in advance. | Example: I want to book a table tonight."},
+      {word: "Double room", def: "A hotel room with a large bed for two people. | Example: We booked a quiet double room."},
+      {word: "Nights", def: "The count of dark periods spent staying over. | Example: We stayed at the beach for three nights."},
+      {word: "View", def: "What you can see outside your bedroom window. | Example: The room has an amazing mountain view."},
+      {word: "Include", def: "To have something as part of a group or price. | Example: Does the price include drinks?"},
+      {word: "Served", def: "Brought to you or ready to be eaten. | Example: Lunch is served at midday."},
+      {word: "Luggage", def: "Bags and suitcases you take on a trip. | Example: Keep your luggage close to you."},
+      {word: "Check-in", def: "The formal process of arriving and getting your room key. | Example: Check-in starts at two o'clock."},
+      {word: "Arrive", def: "To reach the end destination of a journey. | Example: What time does your plane arrive?"},
+      {word: "Hold", def: "To keep or save something for a person. | Example: Please hold my reservation for an hour."}
+    ]
+  },
+  "9. Reporting Lost Property": {
+    roles: { A: "Traveler", B: "Officer" },
+    dialogue: [
+      "Traveler: Hello, I think I left my leather backpack on the bus from the airport.",
+      "Officer: Don't worry. Can you describe the color and shape of your bag?",
+      "Traveler: It is a dark brown backpack with two silver metal zippers on the front.",
+      "Officer: Okay. What valuable items were inside the bag?",
+      "Traveler: My electronic tablet, a black winter jacket, and my house keys.",
+      "Officer: I see. Let me look inside our database system. Is this your bag here?",
+      "Traveler: Yes, that is exactly it! Thank you so much for finding it.",
+      "Officer: You are welcome. Please show me some ID before you sign for it."
+    ],
+    keywords: [
+      {word: "Left", def: "Forgot to bring something with you when leaving. | Example: I left my umbrella on the train."},
+      {word: "Backpack", def: "A bag you carry on your back. | Example: Put your school books inside your backpack."},
+      {word: "Describe", def: "To say what a person or object looks like. | Example: Describe your lost dog to the team."},
+      {word: "Shape", def: "The outer form of an object, like square or round. | Example: The box has a rectangular shape."},
+      {word: "Zippers", def: "Metal fasteners used to close bags or clothes. | Example: Fix the zippers on your coat."},
+      {word: "Valuable", def: "Worth a lot of money or highly important. | Example: My gold watch is very valuable."},
+      {word: "Database", def: "A computer list containing information records. | Example: Search the database for my name."},
+      {word: "Exactly", def: "One hundred percent correct or true. | Example: That is exactly what I wanted."},
+      {word: "Welcome", def: "A friendly response to someone saying thank you. | Example: You are welcome to visit anytime."},
+      {word: "ID", def: "An official identity card or passport document. | Example: Show your photo ID at the entrance."}
+    ]
+  },
+  "10. Ordering a Taxi": {
+    roles: { A: "Passenger", B: "Operator" },
+    dialogue: [
+      "Passenger: Hello, I need a taxi to pick me up from the city museum.",
+      "Operator: Sure. What is the exact address of your pickup location?",
+      "Passenger: I am standing near the main gate on Park Avenue, next to the fountain.",
+      "Operator: Understood. Where are you traveling to this afternoon?",
+      "Passenger: I am heading to the international airport, terminal number two.",
+      "Operator: Okay, a white car will arrive in about seven minutes.",
+      "Passenger: Perfect. How much will the total fare cost to get there?",
+      "Operator: It is a fixed price of thirty euros, including luggage traffic."
+    ],
+    keywords: [
+      {word: "Pick up", def: "To go to a place to collect a waiting person. | Example: Can you pick me up at six?"},
+      {word: "Exact", def: "Completely correct down to the specific details. | Example: Tell me the exact time you arrived."},
+      {word: "Address", def: "The specific house number and street name. | Example: Write your home address here."},
+      {word: "Fountain", def: "A public stone structure that shoots water up. | Example: Let's meet next to the water fountain."},
+      {word: "Heading", def: "Moving in the direction of a certain place. | Example: We are heading toward the mountains."},
+      {word: "Terminal", def: "A large airport building where passengers board planes. | Example: The plane leaves from terminal one."},
+      {word: "White", def: "A light color like snow or clean milk. | Example: She wore a beautiful white dress."},
+      {word: "Fare", def: "The price you pay for riding a taxi, bus, or train. | Example: Train fares went up this month."},
+      {word: "Fixed", def: "A price that stays the same and does not change. | Example: The hotel has a fixed summer rate."},
+      {word: "Euros", def: "The type of money used in many European nations. | Example: The coffee costs three euros."}
+    ]
+  },
+  "11. Booking a Table at a Restaurant": {
+    roles: { A: "Customer", B: "Staff" },
+    dialogue: [
+      "Customer: Hello, I want to book a table for four people for Friday evening.",
+      "Staff: Certainly. What time would you prefer to arrive at our restaurant?",
+      "Customer: We would like to eat at half past seven, if possible.",
+      "Staff: Let me check our reservations book. Yes, we have a table near the window.",
+      "Customer: That sounds lovely. One person in our group uses a wheelchair, is that okay?",
+      "Staff: Yes, our restaurant has a flat ramp entrance and wide doors.",
+      "Customer: Excellent. Do you need my name to finish the booking?",
+      "Staff: Yes, please give me your name and your mobile phone number."
+    ],
+    keywords: [
+      {word: "Table", def: "A piece of furniture where you sit to eat food. | Example: Please clear the dinner table."},
+      {word: "Friday", def: "The weekday coming right before the weekend. | Example: I finish my work shift on Friday."},
+      {word: "Half past", def: "Thirty minutes after a specific hour. | Example: The movie starts at half past eight."},
+      {word: "Possible", def: "Able to be done or achieved easily. | Example: Is it possible to change my ticket?"},
+      {word: "Reservations", def: "Arrangements to save a table or room in advance. | Example: Do you have any open reservations?"},
+      {word: "Lovely", def: "Very nice, pleasant, or beautiful. | Example: We had a lovely day at the lake."},
+      {word: "Wheelchair", def: "A chair with wheels used by people who cannot walk. | Example: The hotel has special rooms for wheelchair users."},
+      {word: "Ramp", def: "A sloping surface joining two different levels together. | Example: Walk up the concrete ramp with your stroller."},
+      {word: "Finish", def: "To bring a task to an end; complete. | Example: Finish eating your vegetables."},
+      {word: "Mobile", def: "A portable wireless telephone device. | Example: Call my mobile number if you get lost."}
+    ]
+  },
+  "12. Buying Shoes": {
+    roles: { A: "Customer", B: "Seller" },
+    dialogue: [
+      "Customer: Excuse me, I like these blue running shoes on display.",
+      "Seller: Great choice. What shoe size do you normally wear?",
+      "Customer: I usually wear size forty. Do you have them in that size?",
+      "Seller: Let me check the stock room. Yes, here is a pair for you.",
+      "Customer: Thank you. Can I try them on to see if they fit?",
+      "Seller: Of course, there is a small bench and a mirror right over there.",
+      "Customer: They are very comfortable, but do you have them in black?",
+      "Seller: No, I am sorry, we only have them in blue and red at the moment."
+    ],
+    keywords: [
+      {word: "Shoes", def: "Coverings that you wear on your feet. | Example: Take off your dirty shoes inside."},
+      {word: "Display", def: "A collection of goods put out for people to look at. | Example: The window display has beautiful dresses."},
+      {word: "Wear", def: "To have clothing items on your physical body. | Example: You should wear a warm coat today."},
+      {word: "Usually", def: "Under normal conditions; most of the time. | Example: I usually drink water with my lunch."},
+      {word: "Stock room", def: "A back room where extra goods are kept in a shop. | Example: The assistant went to the stock room."},
+      {word: "Pair", def: "Two matching things that are used together. | Example: I bought a new pair of leather gloves."},
+      {word: "Try them on", def: "To put on clothing to see if it looks good and fits. | Example: Try them on before you buy them."},
+      {word: "Fit", def: "To be the correct shape and size for your body. | Example: These pants fit me perfectly."},
+      {word: "Bench", def: "A long seat made of wood or stone for people. | Example: Sit down on the park bench."},
+      {word: "Moment", def: "A very brief period of time; right now. | Example: I am busy at the moment."}
+    ]
+  },
+  "13. Asking a Librarian for Help": {
+    roles: { A: "Student", B: "Librarian" },
+    dialogue: [
+      "Student: Hello, I am looking for a book about European history.",
+      "Librarian: Sure, our history section is on the second floor near the stairs.",
+      "Student: Thank you. Can I borrow this book and take it home?",
+      "Librarian: Yes, you just need a library card to borrow items.",
+      "Student: How long am I allowed to keep the book at home?",
+      "Librarian: You can keep it for two weeks. After that, you must return it.",
+      "Student: What happens if I return the book late?",
+      "Librarian: You will have to pay a small fine of fifty cents per day."
+    ],
+    keywords: [
+      {word: "History", def: "The study of past events and times. | Example: I love reading books about ancient history."},
+      {word: "Section", def: "A distinct part or area of a larger place or thing. | Example: The fruit section is at the back of the store."},
+      {word: "Stairs", def: "A set of steps leading from one floor to another. | Example: Walk up the stairs to reach the office."},
+      {word: "Borrow", def: "To take something with permission and give it back later. | Example: Can I borrow your pen for a second?"},
+      {word: "Card", def: "A plastic document showing you belong to an organization. | Example: Show your library card to check out books."},
+      {word: "Allowed", def: "Having permission to do a certain thing. | Example: Smoking is not allowed inside the airport."},
+      {word: "Weeks", def: "Periods of seven days in a row. | Example: Our holiday lasts for two weeks."},
+      {word: "Late", def: "Happening after the planned or expected time. | Example: Hurry up, we are going to be late!"},
+      {word: "Fine", def: "Money you must pay as a punishment for a broken rule. | Example: He paid a parking fine yesterday."},
+      {word: "Cents", def: "Small units of money worth one hundredth of a dollar or euro. | Example: The candy costs fifty cents."}
+    ]
+  },
+  "14. Haircut Appointment": {
+    roles: { A: "Customer", B: "Hairdresser" },
+    dialogue: [
+      "Customer: Hello, I have an appointment for a haircut at three o'clock.",
+      "Hairdresser: Welcome! Please take a seat, I will be ready in two minutes.",
+      "Customer: Great, thank you. I just want a simple wash and cut today.",
+      "Hairdresser: Sure. How short would you like me to cut your hair?",
+      "Customer: Please take off two centimeters from the back and sides.",
+      "Hairdresser: Would you like me to use the scissors or the electronic clippers?",
+      "Customer: Please use the scissors, I prefer a natural look.",
+      "Hairdresser: Understood. Sit back, relax, and I will start washing your hair."
+    ],
+    keywords: [
+      {word: "Appointment", def: "An arrangement to meet someone at a specific time. | Example: I have a doctor's appointment at ten."},
+      {word: "Haircut", def: "The act of cutting or styling a person's hair. | Example: You look great with that new haircut."},
+      {word: "Seat", def: "A chair or place where you sit down. | Example: Please take a seat in the waiting room."},
+      {word: "Ready", def: "Prepared and able to do something immediately. | Example: Are you ready to order your food?"},
+      {word: "Wash", def: "To clean something using water and soap. | Example: Wash your hands before eating dinner."},
+      {word: "Short", def: "Not long; measuring a small distance from end to end. | Example: Summer days are long and winter days are short."},
+      {word: "Centimeters", def: "Units of length equal to one hundredth of a meter. | Example: The notebook is twenty centimeters long."},
+      {word: "Scissors", def: "A sharp tool with two blades used for cutting things. | Example: Use the scissors to cut the wrapping paper."},
+      {word: "Natural", def: "Normal or expected; not looking artificial. | Example: This wood has a beautiful natural color."},
+      {word: "Relax", def: "To rest and become calm and less worried. | Example: Listen to music to help you relax."}
+    ]
+  },
+  "15. Checking a Flight at the Airport": {
+    roles: { A: "Passenger", B: "Desk Agent" },
+    dialogue: [
+      "Passenger: Hello, can you tell me if the flight to Madrid is on time?",
+      "Desk Agent: Let me scan your paper boarding pass. Yes, it is on time.",
+      "Passenger: Great. Which gate number do I need to go to for boarding?",
+      "Desk Agent: Your flight departs from gate B24. Security checks are busy today.",
+      "Passenger: Okay, how long does it take to walk to gate B24 from here?",
+      "Desk Agent: It takes about ten minutes. You should go through security now.",
+      "Passenger: Thank you. Can I bring this small bottle of water with me?",
+      "Desk Agent: No, you must empty your liquids before entering the security area."
+    ],
+    keywords: [
+      {word: "Flight", def: "A journey made by an airplane through the air. | Example: Our flight to Rome was very smooth."},
+      {word: "Scan", def: "To use a digital machine to read a code pattern. | Example: Scan your phone ticket at the gate entrance."},
+      {word: "Boarding pass", def: "A document that lets you get on an airplane. | Example: Print your boarding pass before reaching the airport."},
+      {word: "Gate", def: "The specific area where passengers get on a plane. | Example: Passengers for the London flight must go to gate five."},
+      {word: "Departs", def: "Leaves a place to start a journey. | Example: The train departs at exactly noon."},
+      {word: "Security", def: "The area where guards check passengers for safety. | Example: Empty your pockets before walking through airport security."},
+      {word: "Busy", def: "Full of people or activity; crowded. | Example: The city streets are very busy on Saturdays."},
+      {word: "Bottle", def: "A plastic or glass container used for liquids. | Example: Pass me that bottle of water, please."},
+      {word: "Liquids", def: "Substances that flow freely, like water or milk. | Example: You cannot carry large liquids onto the plane."},
+      {word: "Empty", def: "Containing nothing inside; to pour out. | Example: Please empty the trash bin into the outside container."}
+    ]
+  },
+  "16. Buying Groceries": {
+    roles: { A: "Customer", B: "Cashier" },
+    dialogue: [
+      "Customer: Hello, do you have any fresh organic eggs today?",
+      "Cashier: Yes, they are in aisle four next to the milk boxes.",
+      "Customer: Perfect. I also need a loaf of fresh brown bread.",
+      "Cashier: The bakery section receives hot bread items every morning at six.",
+      "Customer: Wonderful, I have everything I need now for my dinner.",
+      "Cashier: Great. Do you have a store loyalty membership card today?",
+      "Customer: No, I do not. Can I pay with my smart phone app?",
+      "Cashier: Yes, just hold your phone against the terminal screen to pay."
+    ],
+    keywords: [
+      {word: "Fresh", def: "Recently made, grown, or gathered; not old. | Example: I love eating fresh fruit in summer."},
+      {word: "Eggs", def: "Oval objects produced by chickens used for food. | Example: Boil two eggs for breakfast."},
+      {word: "Aisle", def: "A long narrow passage between shelves in a shop. | Example: The pasta is in aisle three."},
+      {word: "Boxes", def: "Square cardboard containers used to hold goods. | Example: Move those heavy boxes into the kitchen."},
+      {word: "Loaf", def: "A shaped block of bread baked in one piece. | Example: Buy a loaf of sliced white bread."},
+      {word: "Bakery", def: "A shop or section that sells bread and cakes. | Example: The bakery smells amazing this morning."},
+      {word: "Dinner", def: "The main meal of the day, eaten in the evening. | Example: We are having chicken for dinner tonight."},
+      {word: "Loyalty", def: "A reward card that gives points to regular customers. | Example: Use your loyalty card to get a discount."},
+      {word: "App", def: "A software program on your mobile smartphone. | Example: Download the weather app onto your phone."},
+      {word: "Screen", def: "The flat glass surface on an electronic device. | Example: The phone screen is cracked."}
+    ]
+  },
+  "17. Joining a Gym": {
+    roles: { A: "Customer", B: "Instructor" },
+    dialogue: [
+      "Customer: Hello, I want to get information about your monthly gym membership.",
+      "Instructor: Welcome! We offer full access to all exercise machines and the pool.",
+      "Customer: That sounds great. Are there any fitness classes included in the price?",
+      "Instructor: Yes, we have yoga and cycling classes every morning and evening.",
+      "Customer: Perfect. Do I need to bring my own padlock for the lockers?",
+      "Instructor: Yes, please bring a padlock and your own clean towel for the showers.",
+      "Customer: Okay. Is the gym open on Sundays or is it closed?",
+      "Instructor: We are open every day from six in the morning until ten at night."
+    ],
+    keywords: [
+      {word: "Gym", def: "A club room where people go to do physical exercise. | Example: I go to the gym three times a week."},
+      {word: "Monthly", def: "Happening or paid once every month. | Example: The monthly rent is five hundred dollars."},
+      {word: "Membership", def: "The state of being a formal member of a group or club. | Example: Her gym membership expires next week."},
+      {word: "Access", def: "The right or ability to enter or use something. | Example: Students have free access to the computer lab."},
+      {word: "Pool", def: "A large structure filled with water for swimming. | Example: The hotel has a beautiful outdoor swimming pool."},
+      {word: "Fitness", def: "The state of being physically healthy and strong. | Example: Walking daily is great for your overall fitness."},
+      {word: "Classes", def: "Group lessons where a teacher instructs students. | Example: I take Spanish classes on Tuesday evenings."},
+      {word: "Padlock", def: "A removable lock used to keep a cabinet gate safe. | Example: Secure your school locker with a strong padlock."},
+      {word: "Towel", def: "A piece of cloth used for drying your wet skin. | Example: Bring a dry towel to the beach."},
+      {word: "Showers", def: "Devices that wash your body with water from above. | Example: The gym has clean showers in the changing room."}
+    ]
+  },
+  "18. At a Post Office": {
+    roles: { A: "Customer", B: "Clerk" },
+    dialogue: [
+      "Customer: Hello, I want to send this heavy parcel to Germany, please.",
+      "Clerk: Sure. Place it on the electronic scales so I can check the weight.",
+      "Customer: No problem. Does it cost extra money to send it with tracking?",
+      "Clerk: Yes, tracking costs three euros more, but it is much safer.",
+      "Customer: Okay, I want tracking then. I need to buy two stamps for postcards too.",
+      "Clerk: Here are your stamps. Please write the address clearly on the box front.",
+      "Customer: I already wrote it. Can I pay for everything together now?",
+      "Clerk: Yes, the total cost for the parcel and stamps is fifteen euros."
+    ],
+    keywords: [
+      {word: "Send", def: "To cause something to go to a destination by post. | Example: Send a letter to your grandmother."},
+      {word: "Parcel", def: "An object wrapped in paper or a box to be posted. | Example: The mail carrier delivered a large parcel today."},
+      {word: "Scales", def: "A machine used to measure how heavy a thing is. | Example: Weigh the fruit on the grocery scales."},
+      {word: "Weight", def: "How heavy a person or physical object is. | Example: The weight of the suitcase is twenty kilograms."},
+      {word: "Tracking", def: "A digital service to see where a posted item is. | Example: Use the tracking number to follow your package online."},
+      {word: "Safer", def: "More protected from danger, loss, or harm. | Example: It is safer to walk on the sidewalk than the road."},
+      {word: "Stamps", def: "Small sticky papers put on letters to pay for postage. | Example: Buy two stamps at the post office counter."},
+      {word: "Postcards", def: "Cards with a picture on one side sent without an envelope. | Example: Send me a postcard from your holiday in Spain."},
+      {word: "Box", def: "A hard square container used for shipping items. | Example: Pack your books inside a strong cardboard box."},
+      {word: "Fifteen", def: "The number that comes right after fourteen. | Example: There are fifteen students inside the classroom cell."}
+    ]
+  },
+  "19. Ordering a Drink at a Bar": {
+    roles: { A: "Customer", B: "Bartender" },
+    dialogue: [
+      "Customer: Hello, can I get a glass of cold fresh orange juice, please?",
+      "Bartender: Sure. Would you like me to put ice cubes and a straw in it?",
+      "Customer: Yes, ice please, but no straw. I want to save plastic waste.",
+      "Bartender: No problem. Are you ordering any food snacks from our menu tonight?",
+      "Customer: Yes, I want a small bowl of salted potato chips, please.",
+      "Bartender: Excellent choice. Do you want to pay for each item now or start a tab?",
+      "Customer: I prefer to pay now. Here is a twenty-euro note.",
+      "Bartender: Thank you. Here is your drink, your snacks, and your cash change."
+    ],
+    keywords: [
+      {word: "Drink", def: "Liquid that you swallow to satisfy your thirst. | Example: Can I have a cold drink, please?"},
+      {word: "Juice", def: "The liquid liquid liquid squeezed from fresh fruits. | Example: Apple juice is very sweet and healthy."},
+      {word: "Ice", def: "Water frozen solid into a cold hard state. | Example: Put some ice in my soda to make it cold."},
+      {word: "Straw", def: "A thin plastic tube used to suck up drinks. | Example: The child drank her milk using a yellow straw."},
+      {word: "Plastic", def: "A light synthetic material that lasts a long time. | Example: Do not use single-use plastic bags if possible."},
+      {word: "Snacks", def: "Small amounts of food eaten between main meals. | Example: I love eating healthy snacks like nuts and fruit."},
+      {word: "Bowl", def: "A round deep dish used for holding food or soup. | Example: Eat your morning cereal from a large ceramic bowl."},
+      {word: "Chips", def: "Thin salty slices of fried potato snack food. | Example: We ate a bag of potato chips during the film."},
+      {word: "Tab", def: "A restaurant bill that accumulates until you leave. | Example: Put the drinks on my hotel room tab, please."},
+      {word: "Note", def: "A piece of paper money issued by a bank. | Example: He paid with a crisp ten-euro note."}
+    ]
+  },
+  "20. Asking for a Refund at a Hotel": {
+    roles: { A: "Guest", B: "Manager" },
+    dialogue: [
+      "Guest: Hello, I am leaving early because the hotel swimming pool is closed.",
+      "Manager: I apologize, sir. The pool is closed for urgent cleaning work.",
+      "Guest: The pool was the main reason I booked my holiday stay here.",
+      "Manager: I understand your frustration. How many nights did you stay with us?",
+      "Guest: I stayed for two nights, but I paid for a full five-night booking.",
+      "Manager: Okay. We will cancel the remaining nights and refund your money.",
+      "Guest: Thank you. Will the refund go back to my credit card automatically?",
+      "Manager: Yes, it takes three business days to show on your banking statement."
+    ],
+    keywords: [
+      {word: "Leaving", def: "Going away from a place or accommodation. | Example: What time are you leaving the hotel tomorrow?"},
+      {word: "Apologize", def: "To say sorry for a mistake or bad situation. | Example: I apologize for the long delay today."},
+      {word: "Warmly", def: "In an affectionate or friendly manner. | Example: He warmly welcomed his friends inside."},
+      {word: "Reason", def: "The facts that explain why something happened. | Example: The bad weather was the main reason we stayed home."},
+      {word: "Frustration", def: "A feeling of anger or annoyance from problems. | Example: She sighed with frustration when the computer crashed."},
+      {word: "Remaining", def: "Left over after other parts have been used. | Example: Eat the remaining pizza slices for lunch."},
+      {word: "Automatically", def: "Happening by itself without human effort. | Example: The lights turn on automatically when it gets dark."},
+      {word: "Business days", def: "The normal working days from Monday to Friday. | Example: Shipping takes five business days to arrive."},
+      {word: "Statement", def: "A printed record of bank account actions. | Example: Check your monthly bank statement for errors."},
+      {word: "Nights", def: "The dark periods spent sleeping at a hotel. | Example: We reserved the suite for three nights."}
+    ]
+  },
+  "21. Buying a Souvenir": {
+    roles: { A: "Tourist", B: "Shopkeeper" },
+    dialogue: [
+      "Tourist: Hello, I am looking for a traditional souvenir gift for my sister.",
+      "Shopkeeper: We have beautiful handmade local coffee mugs and postcards here.",
+      "Tourist: This ceramic mug with the city name looks perfect. How much is it?",
+      "Shopkeeper: That mug is twelve euros. It is made by a local artist town group.",
+      "Tourist: Excellent. Can you wrap it in paper so it does not break in my bag?",
+      "Shopkeeper: Yes, I will use thick bubble wrap to protect the ceramic safely.",
+      "Tourist: Thank you. Do you accept international travel credit cards here?",
+      "Shopkeeper: Yes, we accept all major cards and digital wallet payments."
+    ],
+    keywords: [
+      {word: "Souvenir", def: "An item you buy to remember a holiday place. | Example: I bought a mini Eiffel Tower souvenir in Paris."},
+      {word: "Traditional", def: "Following customs that have existed for a long time. | Example: They wore traditional clothing during the festival event."},
+      {word: "Handmade", def: "Created by a human person using tools instead of a machine. | Example: This wooden table is completely handmade and unique."},
+      {word: "Mugs", def: "Large cups with handles used for hot drinks. | Example: Fill the ceramic mugs with hot coffee."},
+      {word: "Ceramic", def: "Clay baked at high heat to make hard dishes. | Example: Be careful not to drop that delicate ceramic vase."},
+      {word: "Artist", def: "A person who creates paintings, drawings, or sculpture art. | Example: The local artist painted a beautiful picture of the harbor."},
+      {word: "Wrap", def: "To cover an item completely with paper or cloth protective layers. | Example: Wrap the birthday present before the party starts."},
+      {word: "Break", def: "To damage an object into pieces by dropping it. | Example: Glass will break easily if it hits stone."},
+      {word: "Bubble wrap", def: "Plastic packing sheet filled with small air bubbles. | Example: Protect the television screen using thick bubble wrap sheets."},
+      {word: "Wallet", def: "A small pocket case used to carry cash money and cards. | Example: He checked his leather wallet to see if he had cash."}
+    ]
+  }
+};
+
+let selectedButton = null; 
+let conversationIndices = []; 
+let workingPool = []; 
+let currentCardIndex = 0; 
+let currentKeywords = []; 
+
+function buildMenu() { 
+  const menu = document.getElementById("topicMenu"); 
+  menu.innerHTML = ""; 
+  Object.keys(topics).forEach((title, idx) => { 
+    const btn = document.createElement("button");
+    btn.className = "topic-btn"; 
+    btn.textContent = title; 
+    if(idx === 0) { 
+      btn.classList.add("active"); 
+      selectedButton = btn;
+    } 
+    btn.onclick = (e) => handleTopicSwitch(e.target, title); 
+    menu.appendChild(btn); 
+  }); 
+} 
+
+function handleTopicSwitch(targetBtn, title) { 
+  if(selectedButton) selectedButton.classList.remove("active"); 
+  targetBtn.classList.add("active"); 
+  selectedButton = targetBtn;
+  loadTopic(title); 
+} 
+
+function loadTopic(title) { 
+  const data = topics[title]; 
+  workingPool = data.dialogue.map((text, index) => ({ text, originalIndex: index }));
+  for (let i = workingPool.length - 1; i > 0; i--) { 
+    const j = Math.floor(Math.random() * (i + 1));
+    [workingPool[i], workingPool[j]] = [workingPool[j], workingPool[i]]; 
+  } 
+  currentKeywords = data.keywords; 
+  currentCardIndex = 0; 
+  renderKeywordsAndSample(data); 
+  updateFlashcard(); 
+  resetConversation();
+} 
+
+function renderKeywordsAndSample(data) { 
+  const kwBox = document.getElementById("keywordBox"); 
+  kwBox.innerHTML = "";
+  data.keywords.forEach(kw => {
+    const div = document.createElement("div");
+    div.className = "keyword-tag";
+    div.innerHTML = `${kw.word} <span>${kw.def}</span>`;
+    kwBox.appendChild(div);
+  });
+
+  const sampleBox = document.getElementById("sampleConvBox");
+  sampleBox.innerHTML = `<p style="font-weight:800; margin-bottom:12px; color:var(--primary-700);">Correct Sentence Sequence:</p>` + 
+    data.dialogue.map(line => `<p style="margin: 6px 0;">${boldRoles(line, data.roles)}</p>`).join("");
+}
+
+function boldRoles(text, roles) {
+  const roleValues = Object.values(roles);
+  let targetKey = "";
+  let roleClass = "";
+  
+  if (text.startsWith(roleValues[0] + ":")) {
+    targetKey = roleValues[0] + ":";
+    roleClass = "role-a";
+  } else if (text.startsWith(roleValues[1] + ":")) {
+    targetKey = roleValues[1] + ":";
+    roleClass = "role-b";
+  }
+
+  if (targetKey) {
+    return `<span class="role-tag ${roleClass}">${targetKey.replace(':','')}</span>` + text.substring(targetKey.length);
+  }
+  return text;
+}
+
+function formatRoles(text) {
+  if (!selectedButton) return text;
+  const data = topics[selectedButton.textContent];
+  return boldRoles(text, data.roles);
+}
+
+function updateFlashcard() { 
+  document.getElementById("cardElement").classList.remove("flipped"); 
+  if(currentKeywords && currentKeywords.length > 0) { 
+    const currentItem = currentKeywords[currentCardIndex]; 
+    document.getElementById("cardFrontText").textContent = currentItem.word;
+    document.getElementById("cardBackText").textContent = currentItem.def; 
+    document.getElementById("cardTracker").textContent = `${currentCardIndex + 1} / ${currentKeywords.length}`; 
+  } 
+} 
+
+function toggleCard() {
+  document.getElementById("cardElement").classList.toggle("flipped");
+}
+
+function prevCard(event) { 
+  event.stopPropagation();
+  if (currentCardIndex > 0) { 
+    currentCardIndex--; 
+    updateFlashcard(); 
+  } 
+} 
+
+function nextCard(event) { 
+  event.stopPropagation();
+  if (currentCardIndex < currentKeywords.length - 1) { 
+    currentCardIndex++; 
+    updateFlashcard(); 
+  } 
+} 
+
+function resetConversation() {
+  conversationIndices = [];
+  renderPool();
+  document.getElementById("conversationBox").innerHTML = `
+    <p style="color:var(--text-muted); font-style:italic; text-align:center; margin-top:140px; font-size:15px;">
+      Click the sentences from the left panel in the correct order to place them here.
+    </p>`;
+}
+
+function renderPool() {
+  const pool = document.getElementById("phrasePool");
+  pool.innerHTML = "";
+  workingPool.forEach((item, index) => {
+    const btn = document.createElement("button");
+    btn.className = "phrase-btn";
+    btn.innerHTML = formatRoles(item.text);
+    btn.onclick = () => pickLine(index);
+    btn.id = "pool-btn-" + index;
+    pool.appendChild(btn);
+  });
+}
+
+function pickLine(poolIndex) {
+  const item = workingPool[poolIndex];
+  conversationIndices.push(item);
+  
+  const btn = document.getElementById("pool-btn-" + poolIndex);
+  btn.disabled = true;
+  btn.classList.add("used");
+
+  renderConversationLines();
+}
+
+function renderConversationLines() {
+  const box = document.getElementById("conversationBox");
+  if (conversationIndices.length === 0) {
+    resetConversation();
+    return;
+  }
+  
+  box.innerHTML = conversationIndices.map((item, idx) => `
+    <div class="line-item" style="position:relative;">
+      <span style="position:absolute; top:2px; right:6px; font-size:10px; font-weight:600; color:var(--text-muted);">#${idx + 1}</span>
+      ${formatRoles(item.text)}
+    </div>
+  `).join("");
+}
+
+function checkConversation() {
+  const currentLines = topics[selectedButton.textContent].dialogue;
+  const box = document.getElementById("conversationBox");
+  
+  if(conversationIndices.length !== currentLines.length) {
+    box.innerHTML = `<p style="color:var(--error); font-weight:800; font-size:16px; margin-bottom:10px;">⚠️ Please add all the conversation lines first.</p>` + box.innerHTML;
+    return;
+  }
+
+  let allCorrect = true;
+  let feedback = "";
+
+  for(let i=0; i < currentLines.length; i++) {
+    if(conversationIndices[i].originalIndex === i) {
+      feedback += `<p style="color: var(--success); margin: 4px 0; font-size: 15px;">✔ ${formatRoles(conversationIndices[i].text)}</p>`;
+    } else {
+      allCorrect = false;
+      feedback += `<p style="color: var(--error); margin: 4px 0; font-size: 15px;">✘ ${formatRoles(conversationIndices[i].text)}</p>`;
+    }
+  }
+
+  box.innerHTML = allCorrect
+    ? `<p style="color:var(--success); font-weight:800; font-size:17px; margin-bottom:10px;">🎉 Great Job! Everything is in the perfect order.</p>${feedback}`
+    : `<p style="color:var(--error); font-weight:800; font-size:17px; margin-bottom:10px;">Some lines are incorrect. Click 'Clear Options' to try again.</p>${feedback}`;
+}
+
+function showCorrectOrder() {
+  const currentLines = topics[selectedButton.textContent].dialogue;
+  const box = document.getElementById("conversationBox");
+  const data = topics[selectedButton.textContent];
+  box.innerHTML = `
+    <p style="color:var(--secondary-700); font-weight:800; font-size:16px; margin-bottom:10px;">Correct Answer Key:</p>
+    ${currentLines.map(s => `<div class="line-item" style="margin-bottom:6px;">• ${boldRoles(s, data.roles)}</div>`).join("")}
+  `;
+}
+
+buildMenu();
+loadTopic(Object.keys(topics)[0]);
+</script>
+
+</body>
+</html>
